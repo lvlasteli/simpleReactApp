@@ -3,7 +3,7 @@ import React from "react";
 export class User extends React.Component {
     constructor(props) {
         super(props);
-        this.state= {
+        this.state = {
             user: props.username
         }
     }
@@ -11,8 +11,8 @@ export class User extends React.Component {
         return (
             <div>
                 <h3>The User Page</h3>
-                <p>Username: </p>
-                {console.log(this.props.children)}
+                <p>Username: {this.props.username}</p>
+                
             </div>
         );
     }

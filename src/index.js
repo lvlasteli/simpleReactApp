@@ -8,16 +8,34 @@ import { User } from "./components/User";
 import BrowserRouter from "react-router-dom/BrowserRouter";
 
 class App extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            userName: "Lucija"
+        }
+    }
+    ChangeUserName(newname) {
+        console.log(newname);
+        this.setState({
+            userName: newname
+        });
+    }
     render() {
         return(
             <BrowserRouter>
-                <div>
-                    {/* this is not how you declare a parent <Route path="/" component={Root}/> */}
-                    <Root>
-                        <Route exact path="/" component={Home}/>
-                        <Route path="/home" component={Home}/>
-                        <Route path="/user" component={User}/>
-                    </Root>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <Root/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <Route exact path="/" component={Home} />
+                            <Route path="/home" component={() => <Home username={this.state.userName} setnewusername={(e)=>this.changeUsername(e)} />}/>
+                            <Route path="/user" component={() => <User username={this.state.userName} />}/>
+                        </div>
+                    </div>
                 </div>
             </BrowserRouter>
         )
