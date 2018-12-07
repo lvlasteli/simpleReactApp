@@ -8,7 +8,7 @@ export class Home extends React.Component {
         }
     }
     onChange() {
-        this.props.setnewusername(this.state.username);
+        this.props.setNewUsername(this.state.username);
     }
     onUserNameChange(newUserName) {
         this.setState({
