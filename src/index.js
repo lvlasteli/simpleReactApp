@@ -11,32 +11,27 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: "default User"
+            userName: "default User",
+            age: null
         }
     }
-    changeUserName = (newname) => {
+    changeUserName = (value) => {
         this.setState({
-            userName: newname
+            userName: value.username,
+            age: value.age
+
         });
     }
     render() {
-        let homeCmp = (<Home setNewUsername={(newname) =>this.changeUserName(newname)}
-        />)
+        let homeCmp = (<Home setNewUsername={(values) =>this.changeUserName(values)} initialUserName={this.state.userName}/>)
         return(
             <BrowserRouter>
                 <div className="container">
-                    <div className="row">
-                        <div className="col-xs-12">
-                            <Root user={this.state.userName}/>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-12">
-                            <Route exact path="/" render={(props) => homeCmp} />
-                            <Route path="/home" render={(props) => homeCmp}/>
-                            <Route path="/user" render={(props) => <User {...props} username={this.state.userName} />}/>
-                        </div>
-                    </div>
+                    <Root user={this.state.userName}/>
+                    <Route exact path="/" render={(props) => homeCmp} />
+                    <Route path="/home" render={(props) => homeCmp}/>
+                    <Route path="/user" render={(props) => 
+                    <User {...props} username={this.state.userName} age={this.state.age} />}/>
                 </div>
             </BrowserRouter>
         )

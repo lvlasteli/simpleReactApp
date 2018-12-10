@@ -3,15 +3,11 @@ import {Link} from 'react-router-dom'
 
 export const Header = (props) => {
     return (
-        <nav className="navbar navbar-default">
-            <div className="container">
-                <div className="navbar-header">
-                    <ul className="nav navbar-nav">
-                        <li><Link to="/home">Home</Link></li>
-                        <li><Link to="/user" >{props.user}</Link></li>
-                    </ul>
-                </div>
-            </div>
+        <nav className="navbar navbar-dark bg-dark">
+            <ul className="nav item">
+                <li className="nav-link"><Link to="/home">Home</Link></li>
+                <li className="nav-link"><Link to="/user" >{props.user}</Link></li>
+            </ul>
         </nav>
     );
 };
