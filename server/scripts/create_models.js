@@ -1,9 +1,9 @@
 const database = require('../databaseconnection');
 
 //create models
-require('../user/user_model');
-require('../user/order_model');
-require('../user/product_model');
+require('../models/user_model');
+require('../models/order_model');
+require('../models/product_model');
 
 //sync
-database.sync({force: true}).then(()=>database.close());
+database.sync({force: true}).then(() => database.close());

@@ -16,13 +16,15 @@ Order.belongsTo(User, {foreignKey: 'userId'});
 User.hasMany(Order, {foreignKey: 'userId'});
 
 //N to M
-Order.Product=database.define('orderProducts', {
-    number: Sequelize.INTEGER,
-});
-Product.belongsToMany(Order, {through: Order.Product});
-Order.belongsToMany(Product, {through: Order.Product});
+// Order.Product=database.define('orderProducts', {
+//     number: Sequelize.INTEGER,
+// });
+const OrderProduct = require('./orderProduct_model');
+
+Product.belongsToMany(Order, {through: OrderProduct});
+Order.belongsToMany(Product, {through: OrderProduct});
 // so we can join (include) order and orderProduct tables
-Order.hasMany(Order.Product);
-Order.Product.belongsTo(Order);
+Order.hasMany(OrderProduct);
+OrderProduct.belongsTo(Order);
 
 module.exports = Order;

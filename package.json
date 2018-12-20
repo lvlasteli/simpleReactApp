@@ -17,7 +17,9 @@
     "sequelize": "^4.42.0"
   },
   "scripts": {
+    "populate": "node ./server/scripts/dummy_data",
     "create": "node ./server/scripts/create_models",
+    "create_populate": "npm run create && npm run populate",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
