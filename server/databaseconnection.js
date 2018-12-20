@@ -5,4 +5,5 @@ const database = new Sequelize('mysqldb', 'root', 'sifra1950', {
     dialect: 'mysql',
     operatorsAliases: false
 });
+//default port is 8000
 module.exports = database;
