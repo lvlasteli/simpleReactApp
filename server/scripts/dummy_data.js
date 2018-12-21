@@ -1,5 +1,6 @@
 const database = require('../databaseconnection');
-
+//if mySQl dont allow sequelize to access the DB
+//ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
 
 const User = require('../models/user_model');
 const Order = require('../models/order_model');
@@ -60,11 +61,11 @@ Promise.all([
     Order.bulkCreate([
         {
             userId: 1,
-            cost: null
+            cost: 800
         },
         {
             userId: 2,
-            cost: null
+            cost: 1000
         }
     ]),
     
