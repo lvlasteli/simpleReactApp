@@ -5,33 +5,32 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import {Root} from "./components/Root";
 import {Home} from "./components/Home";
 import {User} from "./components/User";
+import {Product} from "./components/Products";
 import BrowserRouter from "react-router-dom/BrowserRouter";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: "default User",
-            age: null
+            email: "Not Logged in"
         }
     }
-    changeUserName = (value) => {
+    changeEmail = (value) => {
         this.setState({
-            userName: value.username,
-            age: value.age
-
+            email: value.email
         });
     }
     render() {
-        let homeCmp = (<Home setNewUsername={(values) =>this.changeUserName(values)} initialUserName={this.state.userName}/>)
+        let homeCmp = (<Home setNewEmail={(values) =>this.changeEmail(values)} initialEmail={this.state.email}/>)
         return(
             <BrowserRouter>
                 <div className="container">
-                    <Root user={this.state.userName}/>
+                    <Root email={this.state.email}/>
                     <Route exact path="/" render={(props) => homeCmp} />
                     <Route path="/home" render={(props) => homeCmp}/>
                     <Route path="/user" render={(props) => 
-                    <User {...props} username={this.state.userName} age={this.state.age} />}/>
+                    <User {...props} email={this.state.email}/>}/>
+                    <Route path="/products" render={(props) => <Product/>}/>
                 </div>
             </BrowserRouter>
         )

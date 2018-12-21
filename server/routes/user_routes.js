@@ -4,9 +4,8 @@ const router =  express.Router();
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user_model');
-const Sequelize = require('sequelize');
 
-router.post('/login', (req, res)=> {
+router.post('/login', (req, res) => {
     User.findOne({
         where: {email: req.body.email}
     }).then((user) => {
@@ -26,7 +25,22 @@ router.post('/login', (req, res)=> {
                 token: token
             });
         }
-    })
+    }).catch((err) => {
+        return res.status(401).json({ message: err});
+    });
 });
+
+const Product = require('../models/product_model');
+
+router.get('/products', (req, res) => {
+    Product.findAll(
+        //get all products
+    ).then((data) => {
+        return res.status(200).json({data});
+    }).catch((err) => {
+        return res.status(401).json({ message: err});
+    });
+});
+
 
 module.exports = router;

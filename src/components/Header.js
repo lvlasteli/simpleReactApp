@@ -6,7 +6,8 @@ export const Header = (props) => {
         <nav className="navbar navbar-dark bg-dark">
             <ul className="nav item">
                 <li className="nav-link"><Link to="/home">Home</Link></li>
-                <li className="nav-link"><Link to="/user" >{props.user}</Link></li>
+                <li className="nav-link"><Link to="/user" >{props.email}</Link></li>
+                <li className="nav-link"><Link to="/products">Products</Link></li>
             </ul>
         </nav>
     );
