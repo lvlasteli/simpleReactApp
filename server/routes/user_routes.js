@@ -4,6 +4,10 @@ const router =  express.Router();
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user_model');
+const Product = require('../models/product_model');
+const Order = require('../models/order_model');
+
+const checkAuth = require('./middleware');
 
 router.post('/login', (req, res) => {
     User.findOne({
@@ -30,8 +34,6 @@ router.post('/login', (req, res) => {
     });
 });
 
-const Product = require('../models/product_model');
-
 router.get('/products', (req, res) => {
     Product.findAll(
         //get all products
@@ -42,5 +44,19 @@ router.get('/products', (req, res) => {
     });
 });
 
+//route that uses middleware need to send userId in the body
+router.post('/orders', checkAuth, (req, res) => {
+    const userEmail = req.body.userId;
+    Order.findAll({where: {userId: userEmail}}).then((data) =>{
+        if(data) {
+            return res.status(200).json({message: data});
+        }
+        else{
+            return res.status(200).json({message: "User Doesnt have any orders!"});
+        }
+    }).catch((err) => {
+        return res.status(401).json({ message: err});
+    });
 
+})
 module.exports = router;
